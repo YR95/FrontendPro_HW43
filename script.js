@@ -153,6 +153,7 @@ function clickButtonRendertAble(button, person) {
 
     trThird.appendChild(tdlanguages);
     trThird.appendChild(tdcity);
+    trThird.appendChild(tdabirth);
 
     table.append(tr, trSecond, trThird);
     document.body.appendChild(table);
