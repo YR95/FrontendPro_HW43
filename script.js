@@ -1,14 +1,19 @@
 function renderForm() {
   let form = document.createElement("form");
-  let pNane = document.createElement("p");
-  let pSurname = document.createElement("p");
-  let pdateBirth = document.createElement("p");
 
+  addradiobutton(form, "text", "Name");
+  addradiobutton(form, "text", "Surname");
+  addradiobutton(form, "text", "Date of birth");
   addradiobutton(form, "radio", "Female");
   addradiobutton(form, "radio", "Male");
-
   addradiobutton(form, "checkbox", "English");
   addradiobutton(form, "checkbox", "Ukranian");
+  let addresa = document.createElement("textarea");
+  addresa.id = "addresa";
+  addresa.rows = 2;
+  addresa.cols = 5;
+  addresa.name = "addressa";
+  addresa.placeholder = "Input your addres....";
 
   const cities = [
     "Dnipro",
@@ -28,28 +33,11 @@ function renderForm() {
       console.log(e.target.value);
     });
   }
-  form.append(select);
-
-  const languages = ["English", "Ukranian"];
-  const arOfLanguages = languages.map(value => {
-    let input = document.createElement("input");
-    let labelcheck = document.createElement("labelcheck");
-
-    input.type = "checkbox";
-    input.title = value;
-    input.id = value;
-    labelcheck.htmlFor = value;
-    labelcheck.appendChild(document.createTextNode(`${value}`));
-
-    form.append(input);
-    form.append(labelcheck);
-  });
+  form.append(select, addresa);
 
   document.body.appendChild(form);
 
 }
-
-var counter = 0;
 
 function addradiobutton(form, type, text) {
   var label = document.createElement("label");
@@ -59,15 +47,14 @@ function addradiobutton(form, type, text) {
   element.setAttribute("type", type);
   element.setAttribute("value", type);
   element.setAttribute("name", type);
+  element.setAttribute("id", text);
 
   label.appendChild(element);
   label.innerHTML += text;
 
-  // var foo = document.getElementById("fooBar");
-  //Append the element in page (in span).
   form.appendChild(label);
-  counter = counter + 1;
+
+  return element;
 }
 
-const main = document.querySelector("#main");
 renderForm();
